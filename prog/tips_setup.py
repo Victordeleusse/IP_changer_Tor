@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 #
-# Configuration tool for tor_ip_switcher /etc/tor/torrc
+# Configuration tool for tor_ip_switcher /tor/torrc
 #
 # Usage: tips_setup.py <your_new_password>
 
