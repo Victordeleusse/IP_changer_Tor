@@ -6,8 +6,13 @@ from time import sleep
 from urllib.error import URLError
 from urllib.request import urlopen
 from _thread import start_new_thread
+
 from stem import Signal
 from stem.control import Controller
+import requests
+import socks
+import socket
+
 
 class Switcher:
     def __init__(self, host, port, password, time_interval):
@@ -38,6 +43,10 @@ class Switcher:
                         my_new_ident = getoutput("wget -qO - ifconfig.me")
 
                     print(f"Your IP is {my_new_ident}")
+                    socks.set_default_proxy(socks.SOCKS5, "localhost", 9050) # 9050 est le port par défaut de Tor pour SOCKS
+                    socket.socket = socks.socksocket
+                    response = requests.get("https://check.torproject.org/api/ip")
+                    print(f"Your IP through TOR is {response.text}") # Mon adresse IP via Tor
                     sleep(self.time_interval)
         except Exception as e:
             print(f"There was an error here: {e}")
