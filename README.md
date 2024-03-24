@@ -1,6 +1,12 @@
 # IP_changer_Tor
 Program for changing IP addresses at desired intervals using the TOR network.
 
+The HTTP requests made to check the IP address are routed through Tor, thanks to the configuration of PySocks and requests to use Tor's SOCKS proxy. This anonymizes these requests, and the IP address reported by check.torproject.org corresponds to that of a Tor exit node, which changes when you send the NEWNYM signal through Tor's ControlPort.
+
+	- Usage of PySocks and SOCKS Proxy Configuration: socks.set_default_proxy() and socket.socket = socks.socksocket globally configure Python sockets to use Tor as a SOCKS proxy. This is essential for ensuring your outgoing requests pass through Tor.
+
+	- Usage of requests after PySocks Configuration: Importing and using requests after configuring the SOCKS proxy ensures that HTTP requests made via requests are routed through Tor, thereby altering the external visible IP address.
+
 ## Set-up
 
 1. Install Tor

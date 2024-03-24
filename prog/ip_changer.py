@@ -43,10 +43,10 @@ class Switcher:
                         my_new_ident = getoutput("wget -qO - ifconfig.me")
 
                     print(f"Your IP is {my_new_ident}")
-                    socks.set_default_proxy(socks.SOCKS5, "localhost", 9050) # 9050 est le port par défaut de Tor pour SOCKS
+                    socks.set_default_proxy(socks.SOCKS5, "localhost", 9050) # 9050 is default TOR SOCKS
                     socket.socket = socks.socksocket
                     response = requests.get("https://check.torproject.org/api/ip")
-                    print(f"Your IP through TOR is {response.text}") # Mon adresse IP via Tor
+                    print(f"Your IP through TOR is {response.text}") # Your IP adress through TOR network
                     sleep(self.time_interval)
         except Exception as e:
             print(f"There was an error here: {e}")
